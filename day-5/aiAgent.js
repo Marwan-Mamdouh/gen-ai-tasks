@@ -1,7 +1,7 @@
-import nodemailer from "nodemailer";
+import nodemailer from "nodemailer"; // need to install it with npm i nodemailer
 
 process.loadEnvFile(".env");
-const TOKEN = process.env.GOOGLE_API_KEY;
+const TOKEN = process.env.GOOGLE_API_KEY; // need to add your GOOGLE_API_KEY in the .env file
 const aiAgent = async (text) => {
   const response = await fetch(
     `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${TOKEN}`,
@@ -67,8 +67,8 @@ const transporter = nodemailer.createTransport({
 
 const sendEmailNotification = async (task) => {
   const info = await transporter.sendMail({
-    from: process.env.EMAIL_TO,
-    to: process.env.EMAIL_TO,
+    from: process.env.EMAIL_TO, // your email, add it here or in the .env (if you don't have one add one )
+    to: process.env.EMAIL_TO, // where you to want to send the email
     subject: "Reminder Notification",
     text: `This is a reminder for your task: ${task}`,
   });
